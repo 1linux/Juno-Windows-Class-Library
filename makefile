@@ -1,10 +1,10 @@
-DEPS=source\juno\base\collections.d source\juno\base\core.d source\juno\base\environment.d source\juno\base\events.d source\juno\base\math.d source\juno\base\native.d source\juno\base\string.d source\juno\base\text.d source\juno\base\threading.d source\juno\base\time.d source\juno\locale\constants.d source\juno\locale\convert.d source\juno\locale\core.d source\juno\locale\numeric.d source\juno\locale\text.d source\juno\locale\time.d source\juno\io\core.d source\juno\io\filesystem.d source\juno\io\path.d source\juno\io\zip.d source\juno\com\core.d source\juno\com\client.d source\juno\com\server.d source\juno\com\reflect.d source\juno\xml\core.d source\juno\xml\xsl.d source\juno\xml\msxml.d source\juno\xml\streaming.d source\juno\xml\all.d source\juno\net\all.d source\juno\net\core.d source\juno\net\client.d source\juno\security\crypto.d source\juno\utils\process.d source\juno\utils\registry.d source\juno\media\constants.d source\juno\media\geometry.d source\juno\media\core.d source\juno\media\imaging.d source\juno\media\native.d source\juno\xml\xsl.d
+DEPS=source\juno\base\collections.d source\juno\base\core.d source\juno\base\environment.d source\juno\base\events.d source\juno\base\math.d source\juno\base\native.d source\juno\base\string.d source\juno\base\text.d source\juno\base\threading.d source\juno\base\time.d source\juno\locale\constants.d source\juno\locale\convert.d source\juno\locale\core.d source\juno\locale\numeric.d source\juno\locale\text.d source\juno\locale\time.d source\juno\io\core.d source\juno\io\filesystem.d source\juno\io\path.d source\juno\io\zip.d source\juno\com\core.d source\juno\com\client.d source\juno\com\server.d source\juno\com\reflect.d source\juno\xml\core.d source\juno\xml\xsl.d source\juno\xml\msxml.d source\juno\xml\streaming.d source\juno\xml\all.d source\juno\net\all.d source\juno\net\core.d source\juno\net\client.d source\juno\security\crypto.d source\juno\utils\process.d source\juno\utils\registry.d source\juno\media\constants.d source\juno\media\geometry.d source\juno\media\core.d source\juno\media\imaging.d source\juno\media\native.d source\juno\xml\xsl.d source\undead\stream.d
 
 juno: juno.lib source/juno.args
 release: junoRelease source/juno.args
 
 juno.lib: $(DEPS)
-	dmd -w -lib -ofjuno.lib $(args) source/macro.ddoc @source/juno.args -Dddocs
+	dmd -lib -ofjuno.lib $(args) source/macro.ddoc @source/juno.args -Dddocs
 
 junoRelease: $(DEPS)
 	dmd -lib -ofjuno.lib -O -inline -release $(args) source/macro.ddoc @source/juno.args -Dddocs

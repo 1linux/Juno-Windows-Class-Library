@@ -10,7 +10,7 @@ import juno.base.core,
   juno.base.text,
   juno.base.native,
   core.vararg,
-  std.stream;
+  undead.stream;
 debug import std.stdio : writefln;
 
 import std.conv;

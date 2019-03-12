@@ -1335,7 +1335,7 @@ package float parseFloat(string s, NumberStyles style, NumberFormat nf) {
     if (!n.toDouble(value))
       throw new OverflowException("Value was either too small or too large for a float.");
     float result = cast(float)value;
-    if (std.math.isinf(result))
+    if (std.math.isInfinity(result))
       throw new OverflowException("Value was either too small or too large for a float.");
     return result;
   }
@@ -1363,7 +1363,7 @@ package bool tryParseFloat(string s, NumberStyles style, NumberFormat nf, out fl
     success = n.toDouble(value);
   if (success) {
     result = cast(float)value;
-    if (std.math.isinf(result))
+    if (std.math.isInfinity(result))
       success = false;
   }
 

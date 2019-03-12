@@ -12,8 +12,8 @@ module juno.com.core;
 import juno.base.core,
   juno.base.native,
   std.string,
-  std.stream,
-  std.typetuple,
+  undead.stream,
+  std.meta,
   std.traits,
   core.vararg;
 import std.algorithm;
@@ -728,13 +728,13 @@ SAFEARRAY* SafeArrayCreateVectorEx(ushort vt, int lLbound, uint cElements, void*
 extern(D):
 
 string decimal_operator(string name) {
-  return "DECIMAL op" ~ name ~ "(DECIMAL d) { \n"
-    "  DECIMAL result; \n"
-    "  VarDec" ~ name ~ "(this, d, result); \n"
-    "  return result; \n"
-    "} \n"
-    "void op" ~ name ~ "Assign" ~ "(DECIMAL d) { \n"
-    "  VarDec" ~ name ~ "(this, d, this); \n"
+  return "DECIMAL op" ~ name ~ "(DECIMAL d) { \n" ~
+    "  DECIMAL result; \n" ~
+    "  VarDec" ~ name ~ "(this, d, result); \n" ~
+    "  return result; \n" ~
+    "} \n" ~
+    "void op" ~ name ~ "Assign" ~ "(DECIMAL d) { \n" ~
+    "  VarDec" ~ name ~ "(this, d, this); \n" ~
     "}";
 }
 
@@ -3106,8 +3106,8 @@ template coCreateEx(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow) {
 template Interfaces(TList...) {
 
   static T coCreate(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow)(ExecutionContext context = ExecutionContext.InProcessServer) {
-    import std.typetuple;
-    static if (std.typetuple.IndexOf!(T, TList) == -1)
+    import std.meta;
+    static if (std.meta.staticIndexOf!(T, TList) == -1)
       static assert(false, "'" ~ typeof(this).stringof ~ "' does not support '" ~ T.stringof ~ "'.");
     else
       return .coCreate!(T, policy)(uuidof!(typeof(this)), context);
@@ -3188,14 +3188,14 @@ template ReferenceCountImpl() {
 template InterfacesTuple(T) {
 
   static if (is(T == Object)) {
-    alias TypeTuple!() InterfacesTuple;
+    alias AliasSeq!() InterfacesTuple;
   }
   static if (is(BaseTypeTuple!(T)[0] == Object)) {
-    alias TypeTuple!(BaseTypeTuple!(T)[1 .. $]) InterfacesTuple;
+    alias AliasSeq!(BaseTypeTuple!(T)[1 .. $]) InterfacesTuple;
   }
   else {
-    alias std.typetuple.NoDuplicates!(
-      TypeTuple!(BaseTypeTuple!(T)[1 .. $],
+    alias std.meta.NoDuplicates!(
+      AliasSeq!(BaseTypeTuple!(T)[1 .. $],
         InterfacesTuple!(BaseTypeTuple!(T)[0])))
       InterfacesTuple;
   }
@@ -3242,9 +3242,9 @@ template IDispatchImpl(T...) {
 template AllBaseTypesOfImpl(T...) {
 
   static if (T.length == 0)
-    alias TypeTuple!() AllBaseTypesOfImpl;
+    alias AliasSeq!() AllBaseTypesOfImpl;
   else
-    alias TypeTuple!(T[0],
+    alias AliasSeq!(T[0],
       AllBaseTypesOfImpl!(std.traits.BaseTypeTuple!(T[0])),
         AllBaseTypesOfImpl!(T[1 .. $]))
     AllBaseTypesOfImpl;
@@ -3270,7 +3270,7 @@ template AllBaseTypesOf(T...) {
  */
 abstract class Implements(T...) : T {
 
-  static if (IndexOf!(IDispatch, AllBaseTypesOf!(T)) != -1)
+  static if (staticIndexOf!(IDispatch, AllBaseTypesOf!(T)) != -1)
     mixin IDispatchImpl!(T, AllBaseTypesOf!(T));
   else
     mixin IUnknownImpl!(T, AllBaseTypesOf!(T));
@@ -3376,7 +3376,7 @@ void tryRelease(IUnknown obj) {
     try {
       obj.Release();
     }
-    catch {
+    catch(Throwable t) {
     }
   }
 }

@@ -1003,6 +1003,7 @@ private struct Argument {
       self.typeCode = cast(TypeCode)self.type.classinfo.name[9];
     }
 
+    version(none) // D has no typedef anymore...
     if (self.typeCode == TypeCode.Typedef) {
       self.type = (cast(TypeInfo_Typedef)type).base;
       self.typeCode = cast(TypeCode)self.type.classinfo.name[9];

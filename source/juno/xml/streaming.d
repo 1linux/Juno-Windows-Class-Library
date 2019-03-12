@@ -14,7 +14,7 @@ import juno.base.core,
   juno.locale.convert,
   juno.com.core,
   juno.xml.core,
-  std.stream;
+  undead.stream;
 
 import std.base64;
 import std.conv;

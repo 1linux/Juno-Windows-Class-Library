@@ -13,7 +13,7 @@ import juno.base.core,
   juno.xml.core,
   juno.xml.dom,
   juno.xml.msxml,
-  std.stream;
+  undead.stream;
 
 /**
  * The exception thrown when an error occurs while processing an XSLT transformation.

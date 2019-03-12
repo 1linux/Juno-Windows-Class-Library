@@ -1,3 +1,4 @@
+-d
 source\juno\base\all.d
 source\juno\base\collections.d
 source\juno\base\core.d
@@ -44,3 +45,7 @@ source\juno\media\geometry.d
 source\juno\media\core.d
 source\juno\media\imaging.d
 source\juno\media\native.d
+source\undead\stream.d
+source\undead\utf.d
+source\undead\doformat.d
+source\undead\internal\file.d

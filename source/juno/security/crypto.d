@@ -16,7 +16,7 @@ import juno.base.core,
   juno.base.native,
   juno.locale.time,
   //juno.com.core,
-  std.stream;
+  undead.stream;
 static import std.string;
 import core.stdc.string : memmove;
 import core.stdc.stdlib : malloc, free;

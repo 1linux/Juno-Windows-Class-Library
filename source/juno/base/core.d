@@ -48,8 +48,8 @@ Object cloneObject(Object obj) {
     return null;
 
   ClassInfo ci = obj.classinfo;
-  size_t start = Object.classinfo.init.length;
-  size_t end = ci.init.length;
+  size_t start = Object.classinfo.initializer.length;
+  size_t end = ci.initializer.length;
 
   Object clone = _d_newclass(ci);
   (cast(void*)clone)[start .. end] = (cast(void*)obj)[start .. end];

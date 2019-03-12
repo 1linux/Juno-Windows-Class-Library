@@ -113,7 +113,7 @@ int getTickCount() {
  * ---
  */
 string expandEnvironmentVariables(string name) {
-    return replace!(m => getenv(m[1]))(name, regex("%(.*?)%", "g"));
+    return replace!(m => environment.get(m[1]))(name, regex("%(.*?)%", "g"));
 }
 
 // Disable test as these depend on enviroment which can change.

@@ -4,7 +4,7 @@ import juno.base.core,
   juno.base.string,
   juno.base.text,
   juno.locale.time,
-  std.stream,
+  undead.stream,
   etc.c.zlib;
 //debug import std.stdio : writeln, writefln;
 
@@ -26,7 +26,7 @@ private DateTime dosDateTimeToDateTime(uint dosDateTime) {
   try {
     return DateTime(year, month, day, hour, minute, second);
   }
-  catch {
+  catch(Throwable t) {
     return DateTime(1980, 1, 1);
   }
 }

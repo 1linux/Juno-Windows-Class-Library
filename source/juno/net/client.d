@@ -15,7 +15,7 @@ import juno.base.core,
   juno.io.filesystem,
   juno.com.core,
   juno.net.core,
-  std.stream;
+  undead.stream;
 static import core.stdc.stdlib;
 static import std.string, std.file;
 

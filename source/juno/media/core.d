@@ -23,7 +23,7 @@ import juno.base.core,
   juno.media.imaging,
   juno.media.native,
   std.string,
-  std.stream;
+  undead.stream;
 
 import std.algorithm : min, max;
 import std.ascii;
