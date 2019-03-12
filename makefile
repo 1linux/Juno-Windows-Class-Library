@@ -10,18 +10,18 @@ junoRelease: $(DEPS)
 	dmd -lib -ofjuno.lib -O -inline -release $(args) source/macro.ddoc @source/juno.args -Dddocs
 
 events: juno examples/com/events.d
-	dmd $(args) examples/com/events.d juno.lib -Isource/juno
+	dmd $(args) examples/com/events.d juno.lib -Isource
 latebinding: juno examples/com/latebinding.d
-	dmd $(args) examples/com/latebinding.d juno.lib -Isource/juno
-messagebeep: juno
-	dmd $(args) examples/dll/messagebeep.d juno.lib -Isource/juno
-relativepath: juno
-	dmd $(args) examples/dll/relativepath.d juno.lib -Isource/juno
+	dmd $(args) examples/com/latebinding.d juno.lib -Isource
+messagebeep: juno examples\dll\messagebeep.d
+	dmd $(args) examples/dll/messagebeep.d juno.lib -Isource
+relativepath: juno examples\dll\relativepath.d
+	dmd $(args) examples/dll/relativepath.d juno.lib -Isource
 xmlwrite: juno examples/xml/write.d
-	dmd $(args) examples/xml/write.d juno.lib -Isource/juno
+	dmd $(args) examples/xml/write.d juno.lib -Isource
 xmlread: juno examples/xml/read.d
-	dmd $(args) examples/xml/read.d juno.lib -Isource/juno
+	dmd $(args) examples/xml/read.d juno.lib -Isource
 xmlnavigate: juno examples/xml/navigate.d
-	dmd $(args) examples/xml/navigate.d juno.lib -Isource/juno
+	dmd $(args) examples/xml/navigate.d juno.lib -Isource
 textimage: juno examples/media/textimage.d
-	dmd $(args) examples/media/textimage.d juno.lib -Isource/juno
+	dmd $(args) examples/media/textimage.d juno.lib -Isource
