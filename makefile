@@ -25,3 +25,6 @@ xmlnavigate: juno examples/xml/navigate.d
 	dmd $(args) examples/xml/navigate.d juno.lib -Isource
 textimage: juno examples/media/textimage.d
 	dmd $(args) examples/media/textimage.d juno.lib -Isource
+invokemethod: juno tests\com\invokemethod.d
+	dmd $(args) tests\com\invokemethod.d juno.lib -Isource
+

@@ -3024,9 +3024,9 @@ IUnknown getActiveObject(string progId) {
  * }
  * ---
  */
-template coCreate(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow) {
+template coCreate(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow, ExecutionContext thecontext = ExecutionContext.InProcessServer) {
 
-  T coCreate(U)(U clsid, ExecutionContext context = ExecutionContext.InProcessServer) {
+  T coCreate(U)(U clsid, ExecutionContext context=thecontext) {
     GUID guid;
     static if (is(U : GUID)) {
       guid = clsid;
@@ -3062,9 +3062,9 @@ template coCreate(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow) {
 
 }
 
-template coCreateEx(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow) {
+template coCreateEx(T, ExceptionPolicy policy = ExceptionPolicy.NoThrow, ExecutionContext thecontext = ExecutionContext.InProcessServer) {
 
-  T coCreateEx(U)(U clsid, string server, ExecutionContext context = ExecutionContext.InProcessServer) {
+  T coCreateEx(U)(U clsid, string server, ExecutionContext context = thecontext) {
     GUID guid;
     static if (is(U : GUID)) {
       guid = clsid;
